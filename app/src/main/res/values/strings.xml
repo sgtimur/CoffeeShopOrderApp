@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">StarBox</string>
+    <string name="quantity_text">Quantity</string>
+    <string name="quantity_amount">0</string>
+    <string name="order_button">Order</string>
+    <string name="price_text_view">Order Summary</string>
+    <string name="topping_text">Topping</string>
+    <string name="cream_checkbox">Whipped cream</string>
+    <string name="chocolate_text">Chocolate</string>
+    <string name="name_textEdit">Name</string>
+</resources>
