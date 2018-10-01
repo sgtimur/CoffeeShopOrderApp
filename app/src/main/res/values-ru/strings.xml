@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StarBox</string>
+    <string name="quantity_text">Количество</string>
+    <string name="order_button">Заказать</string>
+    <string name="price_text_view">Итого</string>
+    <string name="topping_text">Наполнение</string>
+    <string name="cream_checkbox">Взбитые сливки</string>
+    <string name="chocolate_text">Шоколад</string>
+    <string name="name_textEdit">Имя</string>
+    <string name="send_order_button">Отправить заказ</string>
+    <string name="many_cofee">Вы не можете заказать больше 100 кофе</string>
+    <string name="zero_cofee">Вы не можете заказать меньше 1 кофе</string>
+    <string name="total">Итого</string>
+    <string name="name">Имя</string>
+    <string name="add_cream">Добавить взбитые сливки</string>
+    <string name="add_chocolate">Шоколад</string>
+    <string name="quantity">Количество</string>
+    <string name="resut">В сумме</string>
+    <string name="thanks">Спасибо</string>
+</resources>

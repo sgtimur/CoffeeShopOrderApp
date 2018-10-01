@@ -23,12 +23,10 @@
             android:hint="@string/name_textEdit" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/topping_text"
-            android:textAllCaps="true"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            style="@style/HeaderTextStyle"/>
 
         <CheckBox
             android:id="@+id/whippedCreamBox"
@@ -51,11 +49,9 @@
             android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/quantity_text"
-            android:textAllCaps="true"
+            style="@style/HeaderTextStyle"
             android:textAppearance="?android:textAppearanceMedium" />
 
         <LinearLayout
@@ -80,7 +76,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
@@ -89,7 +84,6 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:onClick="increaseNumber"
                 android:text="+"
                 android:textAllCaps="true"
@@ -100,8 +94,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/HeaderTextStyle"
             android:layout_marginTop="8dp"
             android:text="@string/price_text_view"
             android:textAllCaps="true"
@@ -111,10 +104,10 @@
             android:id="@+id/order_summary_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
         <Button
             android:layout_width="wrap_content"
