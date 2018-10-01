@@ -3,8 +3,11 @@ package com.sgtimur.android.justjava;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.support.annotation.XmlRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
@@ -16,6 +19,10 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     private Order order;
+    private TextView cupsAmountView;
+    private TextView priceView;
+    private CheckBox hasChocolateView;
+    private CheckBox hasCreamView;
 
     /**
      * Price of the one coffee cup without any additives
@@ -43,10 +50,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        cupsAmountView = findViewById(R.id.quantity_text_view);
+        priceView = findViewById(R.id.order_summary_text_view);
+        hasCreamView = findViewById(R.id.whippedCreamBox);
+        hasChocolateView = findViewById(R.id.chocolateBox);
+
         displayQuantity(initialAmountOfCoffee);
 
         order = new Order();
         order.setCupsNumber(initialAmountOfCoffee);
+
 
         displayPrice();
 
@@ -65,19 +79,18 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
 
-        boolean hasWhippedCream = ((CheckBox) findViewById(R.id.whippedCreamBox)).isChecked();
-        boolean hasChocolate = ((CheckBox) findViewById(R.id.chocolateBox)).isChecked();
+        boolean hasWhippedCream = hasCreamView.isChecked();
+        boolean hasChocolate = hasChocolateView.isChecked();
         String name = ((EditText) findViewById(R.id.nameTextField)).getText().toString();
 
-        order.setHasWhippedCream(hasWhippedCream);
-        order.setHasChocolate(hasChocolate);
         order.setCustomerName(name);
 
-        ((EditText) findViewById(R.id.nameTextField)).clearFocus();
+        findViewById(R.id.nameTextField).clearFocus();
 
         Intent intent = new Intent(this, TestActivity.class);
         intent.putExtra(MESSAGE, order);
         startActivity(intent);
+
     }
 
     /**
@@ -112,8 +125,7 @@ public class MainActivity extends AppCompatActivity {
      * Displays the ordered number on View
      */
     private void displayQuantity(int number) {
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        cupsAmountView.setText("" + number);
     }
 
     /**
@@ -131,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
      * Displays price on the screen
      */
     private void displayPrice() {
-        TextView textView = findViewById(R.id.order_summary_text_view);
-        textView.setText("$" + calculatePrice(order));
+        priceView.setText("$" + calculatePrice(order));
     }
 
     /**
@@ -147,10 +158,8 @@ public class MainActivity extends AppCompatActivity {
      * Shows the price when toppings are changed
      */
     public void checkBoxClicked(View view) {
-        CheckBox whippedCreamBox = findViewById(R.id.whippedCreamBox);
-        CheckBox chocolateCreamBox = findViewById(R.id.chocolateBox);
-        order.setHasWhippedCream(whippedCreamBox.isChecked());
-        order.setHasChocolate(chocolateCreamBox.isChecked());
+        order.setHasWhippedCream(hasCreamView.isChecked());
+        order.setHasChocolate(hasChocolateView.isChecked());
         displayPrice();
     }
 }
