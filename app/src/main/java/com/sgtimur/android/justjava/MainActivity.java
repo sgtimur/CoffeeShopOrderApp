@@ -2,20 +2,14 @@ package com.sgtimur.android.justjava;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
-import android.support.annotation.XmlRes;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     private Order order;
@@ -50,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         cupsAmountView = findViewById(R.id.quantity_text_view);
         priceView = findViewById(R.id.order_summary_text_view);
         hasCreamView = findViewById(R.id.whippedCreamBox);
@@ -72,6 +66,21 @@ public class MainActivity extends AppCompatActivity {
                     hideKeyboard(v);
             }
         });
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        order = (Order)savedInstanceState.getSerializable("order");
+
+        displayQuantity(order.getCupsNumber());
+        displayPrice();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("order", order);
     }
 
     /**
@@ -101,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             order.setCupsNumber(order.getCupsNumber() + 1);
             displayQuantity(order.getCupsNumber());
         } else {
-            Toast.makeText(this, "You cannot have more than 100 coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.many_cofee), Toast.LENGTH_SHORT).show();
         }
 
         displayPrice();
@@ -115,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             order.setCupsNumber(order.getCupsNumber() - 1);
             displayQuantity(order.getCupsNumber());
         } else {
-            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.zero_cofee), Toast.LENGTH_SHORT).show();
         }
 
         displayPrice();
